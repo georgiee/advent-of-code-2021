@@ -1,8 +1,6 @@
 path = File.join(__dir__, 'input.txt')
 input = File.read(path)
 
-puts " day 3"
-
 transposed = input.split.map {|binary| binary.split("")}.transpose
 # result.max_by { _1.count("1") > _2.count("0") }
 gamma = transposed.map do |number|

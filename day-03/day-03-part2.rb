@@ -53,3 +53,4 @@ end
 oxygen = calculate_oxygen(numbers.clone).to_i(2)
 co2 = calculate_co2(numbers.clone).to_i(2)
 result = oxygen * co2
+puts result
