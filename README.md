@@ -19,3 +19,11 @@ changes a little bit. It now involves aim and feels like the physics of velocity
 I swapped the ifs for a more tidy `case` setup. After I submitted both results I came back to part 2 because
 I wanted to pick up the `send` pattern I used together with the operands `&:+` and `&:-` and feed a class instead. The results looks awesome
 because now I have a single in the line parser: `submarine.send(command, amount)` where send invokes a method with the given name.
+
+# Day 03
+Fuck me. This was difficult even thoguh I KNEW what it's about. `bit planes` or in generally bitwise operations. In the first parts I was smart enough to flip the bits of gamma to get epsilon.
+
+The second part killed me. I forced myself to stay as naive as possible and keep handling the string
+instead of using bitwise operations, I imagined shifting bits of gamma/epsilon and xoring them. 
+
+When I was through first time I didn't check the result with the example set and hoped I'm done. I wasn't so it meant debugging time and  this time with the example set. I recognized that I did not update the bitplanes (gamme/epslion) after removing elements. Once I did that it was working for gamma. For epsilon I wanted to flip bits again but I was not sure about the contrains "keep 0 when the same" to I just copy pasted that part two. When run it was working and I got the final star. But boy, what a pain in the ass when you know where is some more elegant way.
