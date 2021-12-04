@@ -1,3 +1,34 @@
+# Day 04
+This was a nice challenge. I directly had a strategy in my mind. It's not beautiful but straight forward. But first
+I struggled to parse the input. I desperately wanted to find a built-in method to get groups of 5 lines (the boards)
+and I was sure there is some "groups_of" but this time I was disappointed as ths is only part of rails. Anyway `each_with_index`, `inject` and a modulo helped here. Once I had this I didn't want to handle all those arrays instead I diveded and conquored: I created a class for each board.
+
+That helped my mind I could focus on the actual problem dealing with a single board. Here I remembered finallyl the awesomeness of ruby.
+I can subtract arrays to remove existing elements. I can now simply subtract the drawn numbers from the numbers per row and column and 
+if any of that is empty I have a match. In the same manner I can find the unmarked numbers.
+
+The only thing I had to do was to store the numbers in a transposed way to access distinct columns besides the rows. And then I got the result as I can simply go through the drawn numbers in increasing windows and check that windows towards all boards
+
+```
+def wins?(draw)
+    @rows.any? { |row| (row - draw).empty? } || @columns.any? { |columns| (columns - draw).empty? }
+  end
+```
+
+I used `detect` on my boards array to find the first winner and calculating the result.
+In part 2 it was basically an exercise of letting my algorithm run and store the winning boards. 
+Once all boards where winnerns I checked the current numbers and so on.
+
+One problem here was the usage of `detect` which will not work if multiple boards win within a round. I debugged for from frustrating minutes and then got the idea to use `select`. Phew! 
+
+Nice day!
+
+
+----
+```
+
+
+
 --- Day 4: Giant Squid ---
 
 You're already almost 1.5km (almost a mile) below the surface of the ocean, already so deep that you can't see any sunlight. What you can see, however, is a giant squid that has attached itself to the outside of your submarine.
@@ -65,3 +96,6 @@ On the other hand, it might be wise to try a different strategy: let the giant s
 You aren't sure how many bingo boards a giant squid could play at once, so rather than waste time counting its arms, the safe thing to do is to figure out which board will win last and choose that one. That way, no matter which boards it picks, it will win for sure.
 
 In the above example, the second board is the last to win, which happens after 13 is eventually called and its middle column is completely marked. If you were to keep playing until this point, the second board would have a sum of unmarked numbers equal to 148 for a final score of 148 * 13 = 1924.
+
+
+```
