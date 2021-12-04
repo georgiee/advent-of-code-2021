@@ -1,3 +1,15 @@
+# Day 02
+Things stay simple. You get a command and a value which you need to split with a regex or whatever you find.
+The nmap the command to actual operations. Some naive if blocks worked. For the second part the twist ist that the calculation
+changes a little bit. It now involves aim and feels like the physics of velocity & acceleration model is slowly introduced.
+
+I swapped the ifs for a more tidy `case` setup. After I submitted both results I came back to part 2 because
+I wanted to pick up the `send` pattern I used together with the operands `&:+` and `&:-` and feed a class instead. The results looks awesome
+because now I have a single in the line parser: `submarine.send(command, amount)` where send invokes a method with the given name.
+
+---
+
+```
 --- Day 2: Dive! ---
 
 Now, you need to figure out how to pilot this thing.
@@ -59,3 +71,5 @@ Now, the above example does something different:
 After following these new instructions, you would have a horizontal position of 15 and a depth of 60. (Multiplying these produces 900.)
 
 Using this new interpretation of the commands, calculate the horizontal position and depth you would have after following the planned course. What do you get if you multiply your final horizontal position by your final depth?
+
+```

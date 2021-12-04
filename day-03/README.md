@@ -1,3 +1,14 @@
+# Day 03
+Fuck me. This was difficult even thoguh I KNEW what it's about. `bit planes` or in generally bitwise operations. In the first parts I was smart enough to flip the bits of gamma to get epsilon.
+
+The second part killed me. I forced myself to stay as naive as possible and keep handling the string
+instead of using bitwise operations, I imagined shifting bits of gamma/epsilon and xoring them.
+
+When I was through first time I didn't check the result with the example set and hoped I'm done. I wasn't so it meant debugging time and  this time with the example set. I recognized that I did not update the bitplanes (gamme/epslion) after removing elements. Once I did that it was working for gamma. For epsilon I wanted to flip bits again but I was not sure about the contrains "keep 0 when the same" to I just copy pasted that part two. When run it was working and I got the final star. But boy, what a pain in the ass when you know where is some more elegant way.
+
+---
+
+```
 --- Day 3: Binary Diagnostic ---
 
 The submarine has been making some odd creaking noises, so you ask it to produce a diagnostic report just in case.
@@ -67,3 +78,4 @@ Then, to determine the CO2 scrubber rating value from the same example above:
 Finally, to find the life support rating, multiply the oxygen generator rating (23) by the CO2 scrubber rating (10) to get 230.
 
 Use the binary numbers in your diagnostic report to calculate the oxygen generator rating and CO2 scrubber rating, then multiply them together. What is the life support rating of the submarine? (Be sure to represent your answer in decimal, not binary.)
+```
