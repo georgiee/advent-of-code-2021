@@ -7,6 +7,32 @@ I had this beauty very quickly `coords.map(&:spread).compact.flatten(1).tally.va
 
 I struggled a lot more with the loop building. I wanted to use ranges but they are useless for negative values and so it got super naive. Anyway, part 1 & 2 done ✅🙌
 
+
+Update I saw some until loop (code golfed, see appendix) and there I got the idea of using an enumerator
+combined with the new knowledge of the operator `<=>` to get the direction sign.
+
+That looks not perfect but is much more pleasant and ruby like for my feeling.
+
+```
+  def spread
+    spreader = Enumerator.new do |yielder|
+      x = @p1.x
+      y = @p1.y
+      dx = @p2.x <=> @p1.x
+      dy = @p2.y <=> @p1.y
+
+      loop do
+        yielder << [x, y]
+
+        x += dx
+        y += dy
+      end
+    end
+
+    spreader.take_while { _1 != [@p2.x, @p2.y] } + [[@p2.x, @p2.y]]
+  end
+```
+
 ---
 
 ```
