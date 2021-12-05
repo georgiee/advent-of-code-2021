@@ -1,9 +1,11 @@
 # Day 05
 Reading coordinates and intersections I wanted to use linear algebra because I like the aesthetics of math but I realized pretty quickly that this won't help here because of parallel lines. I ditched it but in retorspective I would have still helped me because I could have prettier iterations.  This is a mess now, because it's super, super naive as I had no time to research of think about prettier methods hidden in the ruby toolset (my daughter waking up any time is like a Damocles sword while coding the challenge 😁)
 
-Well, what strategy did I follow without linear algebrat? Filling the grid by calculating all the coordinates between the points and then I could stick to the ruby elegance of handling arrays. I could basically count the amount of intersections by finding the count of coordinates that are the same (with `array#tally`) and then I used `array#count` to count those with a value (in the hash given by tally) greta or equal 2.
+Well, what strategy did I follow without linear algebra? Filling the grid by calculating all the coordinates between the points and then I could stick to the ruby elegance of handling arrays. I could basically count the amount of intersections by finding the count of coordinates that are the same (with `array#tally`) and then I used `array#count` to count those with a value (in the hash given by tally) greater or equal 2.
 
-I had this beauty very quickly `coords.map(&:spread).compact.flatten(1).tally.values.count{ _1 >= 2 }` where `spread` is my custom grid filling method. I struggled a lot with the loop building. I wanted to use ranges but they are useless for negativ values and so it got super naive. Any, part 1 & 2 done ✅🙌
+I had this beauty very quickly `coords.map(&:spread).compact.flatten(1).tally.values.count{ _1 >= 2 }` where `spread` is my custom grid filling method. I learned about the shortcut `_1` on a previous day in someone else's challenge and found the awesome tally in the docs during the first 1-2 days.
+
+I struggled a lot more with the loop building. I wanted to use ranges but they are useless for negative values and so it got super naive. Anyway, part 1 & 2 done ✅🙌
 
 ---
 
