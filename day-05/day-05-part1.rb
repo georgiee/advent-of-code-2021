@@ -2,6 +2,7 @@ require 'ostruct'
 
 path = File.join(__dir__, 'input.txt')
 input = File.read(path)
+
 class Vector
   attr_accessor :p1, :p2
   
