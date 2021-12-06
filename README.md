@@ -8,3 +8,4 @@ Maybe this year I get to the 24th riddle, I always gave up before in the past ev
 + [Day 03](day-03/)
 + [Day 04](day-04/)
 + [Day 05](day-05/)
++ [Day 06](day-06/)
