@@ -23,26 +23,67 @@ SEVEN_SEGMENT_MAP = {
 
 first_signal = signal_patterns.first.map { _1.chars}
 
-def get_digit(signal, digit)
-  signal.detect{ _1.length === SEVEN_SEGMENT_MAP[digit].length}
-end
+class SevenDigitDisplay
+  SEVEN_SEGMENT_MAP = {
+    1 => %i[b c],
+    2 => %i[a b d e g],
+    3 => %i[a b c d g],
+    4 => %i[b c f g],
+    5 => %i[b c d f g],
+    6 => %i[a c d e f g],
+    7 => %i[a b c],
+    8 => %i[a b c d e f g],
+    9 => %i[a b c d f g]
+  }.freeze
 
-def get_map(digit)
-  SEVEN_SEGMENT_MAP[digit]
-end
-
-hash = {}
-
-def get_mapping1(d1, d2, signal)
-  a = get_digit(signal, d1)
-  b = get_digit(signal, d2)
-  a1 = get_map(d1)
-  b1 = get_map(d2)
+  def initialize
+    @wiring = Hash.new
+  end
   
-  [(a1 - b1).first, (a - b).first]
+  def connect(signal, wire)
+    @wiring[signal] = wire
+  end
+
+  def show(signal)
+    wires = signal.chars.map{ @wiring[_1] }
+    SEVEN_SEGMENT_MAP.detect { |k, v| v.sort == wires.sort }
+  end
+  
+  def has?(signal)
+    wires = signal.chars.map{ @wiring[_1] }
+    not SEVEN_SEGMENT_MAP.key(wires).nil?
+  end
 end
 
-result = get_mapping1(7, 1, first_signal)
+display = SevenDigitDisplay.new
+display.connect("x", :b)
+display.connect("y", :c)
+display.connect("d", :a)
+puts display.show("xyd")
+puts display.has?("xyd") ? "good" : "bad"
+
+puts "ok"
+#
+# def get_digit(signal, digit)
+#   signal.detect{ _1.length === SEVEN_SEGMENT_MAP[digit].length}
+# end
+#
+# def get_map(digit)
+#   SEVEN_SEGMENT_MAP[digit]
+# end
+#
+# hash = {}
+#
+# def get_mapping1(d1, d2, signal)
+#   a = get_digit(signal, d1)
+#   b = get_digit(signal, d2)
+#   a1 = get_map(d1)
+#   b1 = get_map(d2)
+#  
+#   [(a1 - b1).first, (a - b).first]
+# end
+#
+# result = get_mapping1(7, 1, first_signal)
 
 
 puts "ok"
