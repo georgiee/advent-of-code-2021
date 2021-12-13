@@ -1,0 +1,5 @@
+# Day 13
+Back in game. This day worked much better. First of all I implemented a print method to debug easily.
+This helped me a lot to spot the problems. There weren't many though. I worked with reflection while programming on my origiami project [Origamizake](https://github.com/georgiee/origami) in the past. It's not that I had the algorithm but I felt comfortable. The algorithm was something with modulo was my guess. I tinkered around with it on paper and somehow got something. It was working but I got wrong numbers on the edges (aka 14 when folding 7). Back to the drawing table I spot the problem. modulo drops too many information, the formular is much easier: `2 * reflection_point - value`.
+
+I then folded two times and got the same results as in the example. Then I run the full example, noted the dots and submitted. But it was wrong. I quickly checked the question and they asked for the numbers after the FIRST fold, I already run all folds (and already saw the solution to part 2). I submitted a single fold then and I got the right answers. Quickly after that I entered the code. Done 🌟
