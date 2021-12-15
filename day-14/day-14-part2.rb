@@ -1,62 +1,38 @@
 require 'benchmark'
 
+# not my solution, not submitted, just as a reference
+# as this problem nagged me all day
+# via https://topaz.github.io/paste/#XQAAAQDHAwAAAAAAAAA4G8nPaRVx/o1ZZYKycGL0SspRCXDQTQUVmHvXfVLEqraSWb0elNeZvnSclxpoFwVtzGktWmOe/XRTtEUmBAOBYzfSLnqEuShWc7DJrSu/wnPgm5XHzf4ctTUjOJhE1iC3FndYgzu3V2InBzTUhniHJP7rQreNtZQB5QWeHZ31bmzByLve13RoeaZt5XSmXhW9Pb/IE1pIlwmTIrQQSKCY0BgD+vhhAtmITSlv3PocxzxYS2LC55RCSGutN6OXlsCCDP/kZ3pIP79XYyqfnmZMgXD7W/6TXztLcx3Dup5qlr8zQxhIJ7C/D1n4o6rQSEDUS5wuY30dvfirzIjzf4pMjifsLJYeaZAyulqxCJBaIZYWP/YFfdWM4JlBKlN+RWgDJYVHvMAyMKsQ34L2HMk8vdB5U9yeFaHJwuCs9qNhumZ1SkclHblRBmB0kFBdWx/Sj/0k5+tGMKPE4+z195Mhn/p1RV9ZJt6wRcFJPo552hzd8IywsjWu+3E1iasGYKOfqHFo3mcjGyTS9IjHisWwqxbTivh6ii//tZt3Pg==
+
 path = File.join(__dir__, 'input.txt')
-template, insertions = *(File.read(path).split("\n\n"))
-insertions = insertions.scan(/(.{2}) -> (.)/).to_h
-insertions = insertions.each_with_object({}) do |(k, v), hash|
-  hash[k] = k.dup.insert(1, v)
+polymer_template, pair_insertion_rules = *(File.read(path).split("\n\n"))
+
+@rules = {}
+@current_pairs = Hash.new(0)
+@element_tally = Hash.new(0)
+
+pair_insertion_rules.each_line(chomp: true) do |line|
+  pair, insert = line.split(" -> ")
+  @rules[pair] = insert
 end
 
-def process(current_template, insertions)
-  pairs = current_template.chars.each_cons(2)
-  
-  next_value = pairs.each_with_index.inject("") do |memo, value|
-    pair, index = value
-    
-    if insertions.key?(pair.join)
-      insertion = insertions[pair.join]
-      value = insertion[0..-2]
-      next memo + value
-    end
-    
-    memo
+polymer_template.chars.each_cons(2) { |pair| @current_pairs[pair.join] += 1 }
+polymer_template.chars.each { |char| @element_tally[char] += 1 }
+
+40.times do |step|
+  if step == 10
+    min, max = @element_tally.minmax_by { |_k, v| v }
+    puts "part 1: #{max[1] - min[1]}"
   end
-  
-  next_value + current_template.chars.last
-end
-
-insertions
-
-def unfold(template, insertions, count)
-  current = template
-  count.times do |index|
-    puts "processing step #{index}"
-    current = process(current, insertions)
+  @current_pairs.clone.each do |pair, pair_occurances|
+    element_to_be_insert = @rules[pair]
+    @element_tally[element_to_be_insert] += pair_occurances
+    @current_pairs[pair] -= pair_occurances
+    @current_pairs[pair[0] + element_to_be_insert] += pair_occurances
+    @current_pairs[element_to_be_insert + pair[1]] += pair_occurances
   end
-
-  current
 end
 
+min, max = @element_tally.minmax_by { |_k, v| v }
+puts "part 2: #{max[1] - min[1]}"
 
-
-# lol I should stop try to improve the performance recognizing that there would be an array if 2192039569602 B's and 3849876073 H's
-# in the example. That's  huge.
-
-# there must be a solution where I can just work on the numbers/frequencies
-# or some way to collapse the polymer and storing the numbers in between
-# I have also checked the output of the example. it's NBBNBBNBBNBBNBBNBBNBBNBBNBBNBBNBBNBB everywhere
-# which tells me that this must be representable as NBB with a numbers
-
-# alternative ideas: unfold the insertions itself somehow? (kind of a cipher) 
-# alternative ideas: compress the results an only work on "triples of data"?
-
-
-
-result = unfold2 unfold(template, insertions, 1)
-result = result.chars.tally.minmax_by {|k, v| v}
-min, max = result
-
-puts "found min: #{min.first} with #{min.last} occurences"
-puts "found nax: #{max.first} with #{max.last} occurences"
-
-puts "part 1 result is: #{max.last - min.last}"
