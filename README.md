@@ -19,3 +19,4 @@ Maybe this year I get to the 24th riddle, I always gave up before in the past ev
 + [Day 14](day-14/) (partial 🤡)
 + [Day 15](day-15/) (partial 🤡)
 + [Day 16](day-16/)
++ [Day 17](day-17/)
