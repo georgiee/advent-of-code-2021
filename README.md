@@ -22,4 +22,5 @@ Maybe this year I get to the 24th riddle, I always gave up before in the past ev
 + [Day 17](day-17/)
 + [Day 18](day-18/) (failed,  I took the array bait instead of processing string 💩)
 + [Day 19](day-19/) (out of time 💩)
-+ [Day 20](day-20/) 
++ [Day 20](day-20/)
++ [Day 21](day-21/) 
