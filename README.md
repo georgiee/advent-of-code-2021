@@ -24,4 +24,5 @@ Maybe this year I get to the 24th riddle, I always gave up before in the past ev
 + [Day 19](day-19/) (out of time 💩)
 + [Day 20](day-20/)
 + [Day 21](day-21/)
-+ [Day 22](day-22/) 
++ [Day 22](day-22/)
++ [Day 23](day-23/) (early stop 💩)
