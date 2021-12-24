@@ -26,6 +26,7 @@ Maybe this year I get to the 24th riddle, I always gave up before in the past ev
 + [Day 21](day-21/)
 + [Day 22](day-22/)
 + [Day 23](day-23/) (early stop 💩)
++ [Day 24](day-24/) (time is up, but it feels I'm super close)
 
 ## Neat things I learned
 + [Injecting](https://apidock.com/ruby/Enumerable/inject) is always super fun. I use `reduce` in JS sometimes and it was the basic instrument for AoC with Ruby
